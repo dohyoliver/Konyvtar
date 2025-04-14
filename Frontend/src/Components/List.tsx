@@ -20,13 +20,12 @@ function List(){
         try {
           const response = await axios.post(`http://localhost:3000/api/books/${id}/rent`);
       
-          // Feltételezzük, hogy a backend pl. ezt küldi:
-          // { message: "Sikeres kölcsönzés", ... }
+        
       
           setSuccess(response.data.message || "Sikeres kölcsönzés");
           setError(null);
         } catch (err: any) {
-          // Ha a backend hibát küld, és van benne válasz
+      
           if (err.response && err.response.data && err.response.data.message) {
             setError(err.response.data.message);
           } else {

@@ -20,10 +20,27 @@ function App() {
      <div className='container'>
         <header className='py-3'>
           <h1>Petrik könyvklub</h1>
-          <nav>
-            <a href='#' onClick={(e) => { e.preventDefault(); scrollToSection(booksRef); }} style={{ marginRight: '10px' }}>Books</a>
-            <a href='#' onClick={(e) => { e.preventDefault(); scrollToSection(felvetelRef); }}>Új tag felvétele</a>
-          </nav>
+          <header className="custom-navbar">
+  <nav className="nav-container">
+    <a
+      href="#"
+      onClick={(e) => {
+        e.preventDefault();
+        scrollToSection(felvetelRef);
+      }}
+    >
+      Új autó felvétele
+    </a>
+    <span className="nav-separator">  </span>
+    <a
+      href="https://petrik.hu"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Petrik honlap
+    </a>
+  </nav>
+</header>
         </header>
       </div>
 
