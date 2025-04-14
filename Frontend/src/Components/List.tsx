@@ -16,17 +16,25 @@ function List(){
     const [loading, setLoading]= useState<boolean>(false)
     const [success, setSuccess]=useState<string |null>(null)
 
-    const handleRent = async(id: number) =>{
-        try{
-            const response = await axios.post(`http://localhost:3000/api/books/${id}/rent`)
-
-            setSuccess("Sikeres kölcsönzés")
-            setError(null)
-        }catch(err){
-            setError(`Már kivan kölcsönözve`)
-            setSuccess(null)
+    const handleRent = async (id: number) => {
+        try {
+          const response = await axios.post(`http://localhost:3000/api/books/${id}/rent`);
+      
+          // Feltételezzük, hogy a backend pl. ezt küldi:
+          // { message: "Sikeres kölcsönzés", ... }
+      
+          setSuccess(response.data.message || "Sikeres kölcsönzés");
+          setError(null);
+        } catch (err: any) {
+          // Ha a backend hibát küld, és van benne válasz
+          if (err.response && err.response.data && err.response.data.message) {
+            setError(err.response.data.message);
+          } else {
+            setError("Ismeretlen hiba történt");
+          }
+          setSuccess(null);
         }
-    }
+      };
     
 useEffect(()=>{
         const fetchbook= async () =>{

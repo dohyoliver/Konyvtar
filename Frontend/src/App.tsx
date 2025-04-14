@@ -30,7 +30,7 @@ function App() {
       <div className='container'>
         <main>
           <div ref={booksRef}>
-            <h2>Könyvek</h2>
+          
             <List />
           </div>
           <div ref={felvetelRef} style={{ marginTop: '100px' }}>
